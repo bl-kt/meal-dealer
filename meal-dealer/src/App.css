@@ -1,0 +1,74 @@
+#root {
+  height: 100vw;
+  width: 100vw;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+/*.logo:hover {*/
+/*  filter: drop-shadow(0 0 2em #ee1c2e);*/
+/*}*/
+
+#header{
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#content {
+  max-width: 650px;
+  margin: auto;
+  padding: 20px;
+}
+
+.meal-content-square {
+  content: '';
+  width: 200px;
+  height: 200px;
+  background: #f3f3f3;
+}
+
+#meal-contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.meal-deal-item {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+#actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.meal-choice{
+  content: '';
+  width: 100px;
+  height: 100px;
+  background: #f3f3f3;
+}
+
+.meal-choice-list{
+  list-style: none;
+}
+
+#meal-options{
+  margin: 80px 0;
+}

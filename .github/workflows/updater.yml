@@ -2,7 +2,7 @@ name: Meals Updater
 
 on:
   schedule:
-      - cron: 0 0 1 * *
+    - cron: 0 0 1 * *
   workflow_dispatch:
 
 jobs:
@@ -10,13 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    defaults:
+      run:
+        working-directory: meal-dealer
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
       - run: npm install
-      - run: node meal-dealer/src/updater.js
+      - run: node src/updater.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update meal-deals.json

@@ -22,7 +22,7 @@ const fetchMealDeal = async (page) => {
     const res = await got.get(URL + `?page=${page}`, {
         headers: HEADERS,
         timeout: {
-            send: 1000,
+            request: 5000,
         },
     });
 

@@ -25,11 +25,14 @@ p {
 /*}*/
 
 #header{
-  min-width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 40px;
+  margin: 50px;
+}
+
+#hero{
+  padding: 5vw 0;
 }
 
 #content {
@@ -166,11 +169,17 @@ p {
   min-width: 150px;
   background: none;
   border: none;
-  height: 280px;
   gap: 8px;
   cursor: pointer;
   padding: 10px;
   justify-content: space-between;
+
+  a {
+    text-decoration: none;
+    color: #2d2d2d;
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
 
 .meal-choice-list-item-about {
@@ -219,12 +228,6 @@ p {
   button {
     padding: 17px 10px !important;
   }
-}
-
-.main-choice-list-item-about {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 .main-choice-list-item-name{

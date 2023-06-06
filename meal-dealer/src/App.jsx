@@ -172,13 +172,13 @@ function App() {
 
   return (
     <div id={'content'}>
-      <header id={'header'}>
-         {/*<img width="500" alt='Meal Dealer Logo' src={'./text-logo.svg'}/>*/}
-          <h1> Meal Dealer</h1>
-      </header>
-        <main id={'main'}>
+        <div id={'hero'}>
+            <header id={'header'}>
+                <img width="500" alt='Meal Dealer Logo' src={'./meal_dealer.png'}/>
+            </header>
+            <main id={'main'}>
             <section id={'help'}>
-                <p> Click to remove</p>
+            {/*    Click to remove etc */}
             </section>
             <section id={'selected-meal'}>
                 <article id={'meal-contents'}>
@@ -225,7 +225,9 @@ function App() {
                     </button>
                 </article>
             </section>
-            <section id={'meal-options'}>
+        </main>
+        </div>
+        <section id={'meal-options'}>
                 <article id={'all-options'}>
                     <div className={'option-header'}>
                         <h3> Items </h3>
@@ -241,7 +243,6 @@ function App() {
                     </ul>
                 </article>
             </section>
-        </main>
         <footer>
             <p>&copy; <script>document.write(new Date().getFullYear())</script> BLKT / Pseudorizer </p>
             <a>

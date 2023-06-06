@@ -3,11 +3,12 @@ function MealDealItem({title, selection, toggleLock, removeItem}) {
     return (
         <div className={'meal-deal-item'}>
             <h2>{title}</h2>
-            <button className={'invisible-button delete-item'} onClick={() => {removeItem(title)}}>
                 <div title={item?.name} className={'meal-content-square'}>
+                    <button className={'invisible-button delete-item'} onClick={() => {removeItem(title)}}>
                     {item?.image && (
                         <img alt={item?.name} width="150" height="150" src={item?.image}/>
                     )}
+                    </button>
                 </div>
                 <div className={'meal-deal-actions-bottom'}>
                     {item && (
@@ -41,7 +42,6 @@ function MealDealItem({title, selection, toggleLock, removeItem}) {
 
                     )}
                 </div>
-            </button>
             <div className={'meal-content-caption'}>
             {item?.name && (
                 <p><a href={item.link}>{item.name}</a> </p>

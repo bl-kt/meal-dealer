@@ -198,19 +198,20 @@ function App() {
                                 strokeWidth="0" fill="currentColor"/>
                         </svg>
                     </button>
-                    <button disabled={!drink || !main || !snack} className={'blue-button'} title={"Share"}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-share"
-                             width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none"
-                             strokeLinecap="round" strokeLinejoin="round">
-                            <title>Share</title>
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>
-                            <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>
-                            <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>
-                            <path d="M8.7 10.7l6.6 -3.4" stroke="currentColor"/>
-                            <path d="M8.7 13.3l6.6 3.4" stroke="currentColor"/>
-                        </svg>
-                    </button>
+                    {/*To do: add sharing functionality (query params) */}
+                    {/*<button disabled={!drink || !main || !snack} className={'blue-button'} title={"Share"}>*/}
+                    {/*    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-share"*/}
+                    {/*         width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none"*/}
+                    {/*         strokeLinecap="round" strokeLinejoin="round">*/}
+                    {/*        <title>Share</title>*/}
+                    {/*        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>*/}
+                    {/*        <path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>*/}
+                    {/*        <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>*/}
+                    {/*        <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>*/}
+                    {/*        <path d="M8.7 10.7l6.6 -3.4" stroke="currentColor"/>*/}
+                    {/*        <path d="M8.7 13.3l6.6 3.4" stroke="currentColor"/>*/}
+                    {/*    </svg>*/}
+                    {/*</button>*/}
                     <button title="Clear Deal" className={'red-button'} onClick={clearSelection}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="16"
                              height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none"

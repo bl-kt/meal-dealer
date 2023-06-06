@@ -32,16 +32,19 @@ const fetchMealDeal = async (page) => {
 
     const urlRegex = /^.+jpeg/i;
 
-    products.forEach((product) => {
+    products.forEach((product, i) => {
         const image = product.querySelector('a img');
         const name = product.querySelector('div.product-details--wrapper > h3 span');
+        const link = product.querySelector('a').href;
 
         const src = image?.getAttribute('srcSet');
         const srcMatches = src?.match(urlRegex);
 
         parsedProducts.push({
+            id: i,
             name: name?.textContent ?? '',
             image: !srcMatches || srcMatches.length === 0 ? '' : srcMatches[0],
+            link: link,
         });
     });
 

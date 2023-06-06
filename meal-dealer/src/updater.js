@@ -44,7 +44,7 @@ const fetchMealDeal = async (page) => {
             id: i,
             name: name?.textContent ?? '',
             image: !srcMatches || srcMatches.length === 0 ? '' : srcMatches[0],
-            link: link.href,
+            link: link?.getAttribute('href'),
         });
     });
 

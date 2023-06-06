@@ -1,6 +1,6 @@
 import './App.scss'
 import MealDeals from '../meals-deals.json'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import MealDealItem from "./components/SelectedDealItem/index.jsx";
 import DealOption from "./components/DealOption/index.jsx";
 
@@ -10,6 +10,9 @@ function App() {
     const [drink, setDrink] = useState({isLocked: false, item: null});
 
     const [allItems, setAllItems] = useState(MealDeals);
+
+    const [showScrollToTop, setShowScrollToTop] = useState(false);
+
 
     const determineSlot = (isRandom = false) => {
         // This could probably be done better, come back to this
@@ -171,19 +174,31 @@ function App() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    useEffect(() => {
+        document.addEventListener("scroll", (event) => {
+            if (window.scrollY > window.innerHeight) {
+                setShowScrollToTop(true)
+            } else {
+                setShowScrollToTop(false)
+            }
+        });
+    }, []);
+
   return (
     <div id={'content'}>
         <div id={'hero'}>
-            <button id={'scroll-to-top'} className={'grey-button'} onClick={scrollToTop}>
+            {showScrollToTop && (
+                <button id={'scroll-to-top'} className={'grey-button'} onClick={scrollToTop}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-big-up-line"
-                     width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none"
-                     stroke-linecap="round" stroke-linejoin="round">
+                     width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none"
+                     strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path
                         d="M9 12h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v6h-6v-6z"/>
                     <path d="M9 21h6"/>
                 </svg>
             </button>
+            )}
             <header id={'header'}>
                 <img width="500" alt='Meal Dealer Logo' src={'./meal_dealer.png'}/>
             </header>

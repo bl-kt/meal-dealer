@@ -4,7 +4,7 @@ function MealDealItem({title, selection, toggleLock, removeItem}) {
         <div className={'meal-deal-item'}>
             <h2>{title}</h2>
                 <div title={item?.name} className={'meal-content-square'}>
-                    <button className={'invisible-button delete-item'} onClick={() => {removeItem(title)}}>
+                    <button title="Click to remove item" className={'invisible-button delete-item'} onClick={() => {removeItem(title)}}>
                     {item?.image && (
                         <img alt={item?.name} width="150" height="150" src={item?.image}/>
                     )}

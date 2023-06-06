@@ -63,8 +63,6 @@ function App() {
                     break;
             }
         }
-    //     Add item
-    //     If item in slot 1, add to 2, if in slot 1 and 2, add to three, etc. 3 -
     }
 
 
@@ -84,7 +82,6 @@ function App() {
             default:
                 break;
         }
-
     }
 
     // Generate random meal deal item, then add it.
@@ -170,9 +167,23 @@ function App() {
         }
     }
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
   return (
     <div id={'content'}>
         <div id={'hero'}>
+            <button id={'scroll-to-top'} className={'grey-button'} onClick={scrollToTop}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-big-up-line"
+                     width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path
+                        d="M9 12h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v6h-6v-6z"/>
+                    <path d="M9 21h6"/>
+                </svg>
+            </button>
             <header id={'header'}>
                 <img width="500" alt='Meal Dealer Logo' src={'./meal_dealer.png'}/>
             </header>
@@ -238,7 +249,7 @@ function App() {
                     <ul className={'meal-choice-list'}>
                         {allItems.sort().map((item) => {
                             return (
-                                <DealOption item={item} addItem={() => {addItem(item.uuid)}}/>
+                                <DealOption key={item.uuid} item={item} addItem={() => {addItem(item.uuid)}}/>
                             )}
                         )}
                     </ul>
@@ -246,8 +257,8 @@ function App() {
             </section>
         <footer>
             <p>&copy; <script>document.write(new Date().getFullYear())</script> BLKT / Pseudorizer </p>
-            <a>
-             {/*    Github Link */}
+            <a href={"https://github.com/bl-kt/meal-dealer"}>
+             Github
             </a>
         </footer>
     </div>

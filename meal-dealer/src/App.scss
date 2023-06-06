@@ -56,6 +56,10 @@ p {
   z-index: 0;
 }
 
+.meal-content-square:hover {
+    transform: scale(1.1);
+}
+
 .meal-content-square:hover, input:hover {
   box-shadow: #f6f6f6 0px 0px 0px 4px;
 }
@@ -182,6 +186,10 @@ p {
   }
 }
 
+.meal-choice-list-item:hover{
+  transform: scale(1.1);
+}
+
 .meal-choice-list-item-about {
   display: flex;
   flex: 1;
@@ -238,4 +246,31 @@ p {
 .invisible-button {
   background: none;
   border: none;
+}
+
+#scroll-to-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 69;
+}
+
+.grey-button {
+  font-family: "TESCO Modern", Arial, sans-serif;
+  font-size: 16px;
+  background-color: #a9a9a9;
+  color: rgb(255, 255, 255);
+  border-radius: 24px;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border: none;
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
 }

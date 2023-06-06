@@ -5,6 +5,17 @@ import MealDealItem from "./components/SelectedDealItem/index.jsx";
 import DealOption from "./components/DealOption/index.jsx";
 
 function App() {
+    // Scroll event listener
+    useEffect(() => {
+        document.addEventListener("scroll", (event) => {
+            if (window.scrollY > window.innerHeight) {
+                setShowScrollToTop(true)
+            } else {
+                setShowScrollToTop(false)
+            }
+        });
+    }, []);
+
     const [main, setMain] = useState({isLocked: false, item: null});
     const [snack, setSnack] = useState({isLocked: false, item: null});
     const [drink, setDrink] = useState({isLocked: false, item: null});
@@ -12,6 +23,36 @@ function App() {
     const [allItems, setAllItems] = useState(MealDeals);
 
     const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const getItemFromQueryParam = (slot) => {
+        switch (slot) {
+            case 'main':
+                if (urlParams.get(`${slot}`) !== ''){
+                    addItem(urlParams.get(`${slot}`), 'main', false)
+                }
+                break;
+            case 'snack':
+                if (urlParams.get(`${slot}`) !== ''){
+                    addItem(urlParams.get(`${slot}`), 'snack', false)
+                }
+                break;
+            case 'drink':
+                if (urlParams.get(`${slot}`) !== ''){
+                    addItem(urlParams.get(`${slot}`), 'drink', false)
+                }                break;
+            default:
+                break;
+        }
+    }
+
+    // Check query params for loading shared meal deals
+    useEffect(() => {
+            getItemFromQueryParam('main')
+            getItemFromQueryParam('snack')
+            getItemFromQueryParam('drink')
+    }, []);
 
 
     const determineSlot = (isRandom = false) => {
@@ -33,7 +74,7 @@ function App() {
     }
 
     // Add item to current meal deal
-    const addItem = (uuid, slot = null) => {
+    const addItem = (uuid, slot = null, updateUrl = true) => {
         const item = allItems.find((item) => {
             return item.uuid === uuid
         })
@@ -45,45 +86,59 @@ function App() {
         if (slot !== 'full'){
             switch (slot) {
                 case 'drink':
+                        urlParams.set('drink', item.uuid)
                         setDrink((prev) => ({
                             ...prev,
                             item: item,
                         }));
                     break;
                 case 'main':
+                        urlParams.set('main', item.uuid)
                         setMain((prev) => ({
-                        ...prev,
-                        item: item,
+                            ...prev,
+                            item: item,
                         }));
+
                     break;
                 case 'snack':
+                        urlParams.set('snack', item.uuid)
                         setSnack((prev) => ({
-                        ...prev,
-                        item: item,
+                            ...prev,
+                            item: item,
                         }));
                     break;
                 default:
                     break;
             }
+
+            if (updateUrl){
+                window.location.search = urlParams;
+            }
         }
     }
 
-
     // Remove item from current meal deal
-    const removeItem = (location) => {
+    const removeItem = (location, updateUrl = true) => {
         const slot = location.toLowerCase()
         switch (slot) {
             case 'drink':
                 setDrink({isLocked: false, item: null})
+                urlParams.set('drink', '')
                 break;
             case 'main':
                 setMain({isLocked: false, item: null})
+                urlParams.set('main', '')
                 break;
             case 'snack':
                 setSnack({isLocked: false, item: null})
+                urlParams.set('snack', '')
                 break;
             default:
                 break;
+        }
+
+        if (updateUrl){
+            window.location.search = urlParams;
         }
     }
 
@@ -120,6 +175,12 @@ function App() {
         setDrink({isLocked: false, item: null})
         setSnack({isLocked: false, item: null})
         setMain({isLocked: false, item: null})
+
+        urlParams.set('main', '')
+        urlParams.set('snack', '')
+        urlParams.set('drink', '')
+
+        window.location.search = urlParams;
     }
 
     // Sort Alphabetically
@@ -174,15 +235,13 @@ function App() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    useEffect(() => {
-        document.addEventListener("scroll", (event) => {
-            if (window.scrollY > window.innerHeight) {
-                setShowScrollToTop(true)
-            } else {
-                setShowScrollToTop(false)
-            }
-        });
-    }, []);
+    // Add meal deal items to query parameter in order to share them.
+    const shareDeal = () => {
+        navigator.clipboard.writeText(window.location.href)
+        let alert = document.getElementById("alert");
+        alert.className = "show";
+        setTimeout(()=>{ alert.className = alert.className.replace("show", ""); }, 3000);
+    }
 
   return (
     <div id={'content'}>
@@ -190,7 +249,7 @@ function App() {
             {showScrollToTop && (
                 <button id={'scroll-to-top'} className={'grey-button'} onClick={scrollToTop}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-big-up-line"
-                     width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none"
+                     width="32" height="32" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none"
                      strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path
@@ -203,9 +262,6 @@ function App() {
                 <img width="500" alt='Meal Dealer Logo' src={'./meal_dealer.png'}/>
             </header>
             <main id={'main'}>
-            <section id={'help'}>
-            {/*    Click to remove etc */}
-            </section>
             <section id={'selected-meal'}>
                 <article id={'meal-contents'}>
                     <MealDealItem title='Main' selection={main} toggleLock={toggleLock} removeItem={removeItem}/>
@@ -213,6 +269,7 @@ function App() {
                     <MealDealItem title='Drink' selection={drink} toggleLock={toggleLock} removeItem={removeItem}/>
                 </article>
                 <article id={'actions'}>
+                    <span id="alert">Deal Successfully Copied</span>
                     <button className={'blue-button'} title={"Randomize"} onClick={randomMealDeal}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-dice-6-filled"
                              width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none"
@@ -225,19 +282,19 @@ function App() {
                         </svg>
                     </button>
                     {/*To do: add sharing functionality (query params) */}
-                    {/*<button disabled={!drink || !main || !snack} className={'blue-button'} title={"Share"}>*/}
-                    {/*    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-share"*/}
-                    {/*         width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none"*/}
-                    {/*         strokeLinecap="round" strokeLinejoin="round">*/}
-                    {/*        <title>Share</title>*/}
-                    {/*        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>*/}
-                    {/*        <path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>*/}
-                    {/*        <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>*/}
-                    {/*        <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>*/}
-                    {/*        <path d="M8.7 10.7l6.6 -3.4" stroke="currentColor"/>*/}
-                    {/*        <path d="M8.7 13.3l6.6 3.4" stroke="currentColor"/>*/}
-                    {/*    </svg>*/}
-                    {/*</button>*/}
+                    <button disabled={!drink || !main || !snack} className={'grey-button'} title={"Share"} onClick={shareDeal}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-share"
+                             width="16" height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none"
+                             strokeLinecap="round" strokeLinejoin="round">
+                            <title>Share</title>
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>
+                            <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>
+                            <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" stroke="currentColor"/>
+                            <path d="M8.7 10.7l6.6 -3.4" stroke="currentColor"/>
+                            <path d="M8.7 13.3l6.6 3.4" stroke="currentColor"/>
+                        </svg>
+                    </button>
                     <button title="Clear Deal" className={'red-button'} onClick={clearSelection}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width="16"
                              height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none"
@@ -272,7 +329,7 @@ function App() {
             </section>
         <footer>
             <p>&copy; <script>document.write(new Date().getFullYear())</script> BLKT / Pseudorizer </p>
-            <a href={"https://github.com/bl-kt/meal-dealer"}>
+            <a target="_blank" href={"https://github.com/bl-kt/meal-dealer"}>
              Github
             </a>
         </footer>

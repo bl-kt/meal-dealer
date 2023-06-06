@@ -5,7 +5,7 @@ function DealOption({item, addItem }) {
                  onClick={addItem}>
                     <img loading="lazy" width="100%" src={item.image} alt={item.name}/>
                     <div className={'main-choice-list-item-about'}>
-                        <p> <a href={item.link}>
+                        <p> <a target="_blank" href={item.link}>
                             {item.name}</a></p>
                     </div>
             </button>

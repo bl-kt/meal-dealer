@@ -268,9 +268,29 @@ p {
   text-align: center;
   padding: 10px;
   border: none;
+}
 
-  svg {
-    width: 32px;
-    height: 32px;
-  }
+.grey-button:hover {
+    box-shadow: rgba(169, 169, 169, 0.4) 0px 0px 0px 4px;
+    text-decoration: underline;
+}
+
+#alert {
+  visibility: hidden;
+  color: #3f3f3f;
+  background-color: #e1e1e1;
+  min-width: 250px;
+  margin-left: -125px;
+  border-radius: 2px;
+  padding: 16px;
+  text-align: center;
+  left: 50%;
+  bottom: 30px;
+  z-index: 1;
+  position: fixed;
+}
+
+#alert.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }

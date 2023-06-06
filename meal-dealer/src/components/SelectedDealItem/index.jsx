@@ -44,7 +44,7 @@ function MealDealItem({title, selection, toggleLock, removeItem}) {
                 </div>
             <div className={'meal-content-caption'}>
             {item?.name && (
-                <p><a href={item.link}>{item.name}</a> </p>
+                <p><a target="_blank" href={item.link}>{item.name}</a> </p>
             )}
             </div>
         </div>

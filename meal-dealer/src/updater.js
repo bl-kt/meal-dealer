@@ -35,7 +35,7 @@ const fetchMealDeal = async (page) => {
     products.forEach((product, i) => {
         const image = product.querySelector('a img');
         const name = product.querySelector('div.product-details--wrapper > h3 span');
-        const link = product.querySelector('a').href;
+        const link = product.querySelector('div.product-details--wrapper > h3 > a');
 
         const src = image?.getAttribute('srcSet');
         const srcMatches = src?.match(urlRegex);
@@ -44,7 +44,7 @@ const fetchMealDeal = async (page) => {
             id: i,
             name: name?.textContent ?? '',
             image: !srcMatches || srcMatches.length === 0 ? '' : srcMatches[0],
-            link: link,
+            link: link.href,
         });
     });
 

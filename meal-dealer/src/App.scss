@@ -4,6 +4,10 @@
   src: url('assets/ITCNewtextRegular.otf') format("opentype");
 }
 
+p {
+  margin: 0;
+}
+
 #root {
   height: 100vw;
   width: 100vw;
@@ -38,13 +42,37 @@
   content: '';
   width: 200px;
   height: 200px;
+  min-width: 200px;
+  min-height: 200px;
   background: #f3f3f3;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 0;
+}
+
+.meal-content-square:hover, input:hover {
+  box-shadow: #f6f6f6 0px 0px 0px 4px;
+}
+
+.meal-content-caption {
+  max-width: 180px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 20px;
+
+  a {
+    color: #363636;
+    text-decoration: none;
+  }
 }
 
 #meal-contents {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -56,20 +84,57 @@
   align-items: center;
 }
 
+.blue-button {
+  font-family: "TESCO Modern", Arial, sans-serif;
+  font-size: 16px;
+  background-color: rgb(0, 83, 159);
+  color: rgb(255, 255, 255);
+  border-radius: 24px;
+  height: 100%;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border: none;
+}
+
+.blue-button:hover {
+  box-shadow: rgba(0, 83, 159, 0.4) 0px 0px 0px 4px;
+  text-decoration: underline;
+}
+.red-button {
+  font-family: "TESCO Modern", Arial, sans-serif;
+  font-size: 16px;
+  background-color: rgb(159, 0, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 24px;
+  height: 100%;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border: none;
+}
+
+.red-button:hover {
+  box-shadow: rgba(159, 0, 0, 0.4) 0px 0px 0px 4px;
+  text-decoration: underline;
+}
+
 #actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
   column-gap: 20px;
   padding: 0 7px;
-}
-
-#actions button {
-  background: none;
-  color: #000000;
-  border: none;
+  align-content: center;
+  margin-top: 50px;
 }
 
 .meal-choice{
@@ -95,14 +160,25 @@
 .meal-choice-list-item{
   max-width: 150px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   min-width: 150px;
   background: none;
   border: none;
+  height: 280px;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px;
+  justify-content: space-between;
 }
+
+.meal-choice-list-item-about {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 
 #meal-options{
   margin: 80px 0;
@@ -119,11 +195,44 @@
   justify-content: space-between;
 }
 
-.meal-deal-lock {
+.meal-deal-action {
+  z-index: 10;
+  position: absolute;
+}
+
+.meal-deal-actions-bottom {
   position: relative;
-  top: -35px;
-  left: 75px;
+  top: -45px;
+  left: 150px;
+
+  button {
+    padding: 17px 10px !important;
+  }
+}
+
+.meal-deal-actions-top {
+  position: relative;
+  top: 15px;
+  left: 50px;
+
+
+  button {
+    padding: 17px 10px !important;
+  }
+}
+
+.main-choice-list-item-about {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main-choice-list-item-name{
+  display: flex;
+  flex: 1;
+}
+
+.invisible-button {
   background: none;
   border: none;
-  z-index: 10;
 }

@@ -6,11 +6,11 @@
 	</defs>
 	<style>
 		tspan { white-space:pre } 
-		.t0 { font-size: 600px;fill: #ff0000;font-weight: 500;font-family: "NewtextITCbyBT-Regular", "ITC Newtext" } 
+		.t0 { font-size: 625px;fill: #ff0000;font-weight: 500;font-family: "NewtextITCbyBT-Regular", "ITC Newtext" } 
 	</style>
 	<use id="Background" href="#img1" x="188" y="1029"/>
 	<use id="Layer 1" href="#img2" x="1766" y="1029"/>
-	<text id="MEAL DEALER" style="transform: matrix(1,0,0,1,312.359,841.93)" >
+	<text id="MEAL DEALER" style="transform: matrix(1,0,0,1,215.609,811.906)" >
 		<tspan x="0" y="0" class="t0">M</tspan><tspan  y="0" class="t0">E</tspan><tspan  y="0" class="t0">A</tspan><tspan  y="0" class="t0">L</tspan><tspan  y="0" class="t0"> </tspan><tspan  y="0" class="t0">D</tspan><tspan  y="0" class="t0">E</tspan><tspan  y="0" class="t0">A</tspan><tspan  y="0" class="t0">L</tspan><tspan  y="0" class="t0">E</tspan><tspan  y="0" class="t0">R
 </tspan>
 	</text>

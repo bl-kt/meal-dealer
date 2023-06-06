@@ -15,8 +15,6 @@ const HEADERS = {
     'Cookie': '',
 };
 
-const parsedProducts = [];
-
 // Remove brands ('Tesco', 'T.P/Chef', 'Express Cuisine', etc) and measurements (300ml, 250g, etc) from name
 const trimName = (name) => {
     return name.replace(/\d{1,3}(g|ml)/i, '').replace('Tesco', '').replace('T.P/Chef', '').replace('Express Cuisine', '')
@@ -38,6 +36,8 @@ const fetchMealDeal = async () => {
 
     const urlRegex = /^.+jpeg/i;
 
+    const parsedProducts = [];
+
     products.forEach((product) => {
         const image = product.querySelector('a img');
         const name = product.querySelector('div.product-details--wrapper > h3 span');
@@ -53,11 +53,11 @@ const fetchMealDeal = async () => {
         });
     });
 
-    return products.length > 0;
+    return parsedProducts;
 };
 
 const fetchMealDeals = async () => {
-    await fetchMealDeal()
+    const parsedProducts = await fetchMealDeal()
 
     let oldData = null;
 

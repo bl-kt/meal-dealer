@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "ITC Newtext";
+  font-style: normal;
+  src: url('assets/ITCNewtextRegular.otf') format("opentype");
+}
+
 #root {
   height: 100vw;
   width: 100vw;
@@ -19,6 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 40px;
 }
 
 #content {
@@ -51,11 +58,18 @@
 
 #actions {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 40px 0;
+  column-gap: 20px;
+  padding: 0 7px;
+}
+
+#actions button {
+  background: none;
+  color: #000000;
+  border: none;
 }
 
 .meal-choice{
@@ -67,8 +81,49 @@
 
 .meal-choice-list{
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 100%;
+  column-gap: 15px;
+  row-gap: 15px;
+  margin: 0;
+  padding: 50px 0;
+  justify-content: center;
+}
+
+.meal-choice-list-item{
+  max-width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  min-width: 150px;
+  background: none;
+  border: none;
 }
 
 #meal-options{
   margin: 80px 0;
+}
+
+#header {
+  font-family: "ITC Newtext", serif
+}
+
+.option-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meal-deal-lock {
+  position: relative;
+  top: -35px;
+  left: 75px;
+  background: none;
+  border: none;
+  z-index: 10;
 }

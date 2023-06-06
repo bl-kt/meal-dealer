@@ -290,7 +290,33 @@ p {
   position: fixed;
 }
 
+.header-image{
+  width: 100%;
+}
+
 #alert.show {
   visibility: visible;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .header-image{
+    width: 550px;
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .header-image{
+    width: 450px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  #meal-contents{
+    justify-content: center;
+  }
+
+  .header-image{
+    width: 300px;
+  }
 }

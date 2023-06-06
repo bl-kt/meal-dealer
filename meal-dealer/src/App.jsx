@@ -283,7 +283,7 @@ function App() {
             </button>
             )}
             <header id={'header'}>
-                <img width="500" alt='Meal Dealer Logo' src={'./meal_dealer.png'}/>
+                <img className="header-image" alt='Meal Dealer Logo' src={'./meal_dealer.png'}/>
             </header>
             <main id={'main'}>
             <section id={'selected-meal'}>

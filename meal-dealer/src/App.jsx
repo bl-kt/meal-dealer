@@ -260,6 +260,7 @@ function App() {
 
     // Add meal deal items to query parameter in order to share them.
     const shareDeal = () => {
+        if (!drink.item || !main.item || !snack.item) return
         navigator.clipboard.writeText(window.location.href)
         let alert = document.getElementById("alert");
         alert.className = "show";

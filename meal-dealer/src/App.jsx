@@ -27,21 +27,30 @@ function App() {
     const urlParams = new URLSearchParams(window.location.search);
 
     const getItemFromQueryParam = (slot) => {
+        const v4 = new RegExp(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
+
+        const uuid = urlParams.get(`${slot}`)
+        console.log(uuid)
+        console.log(uuid.match(v4))
+
         switch (slot) {
             case 'main':
-                if (urlParams.get(`${slot}`) !== ''){
-                    addItem(urlParams.get(`${slot}`), 'main', false)
+                if (uuid !== '' && uuid.match(v4)){
+                    addItem(uuid, 'main', false)
+                } else {
+                    return
                 }
                 break;
             case 'snack':
-                if (urlParams.get(`${slot}`) !== ''){
-                    addItem(urlParams.get(`${slot}`), 'snack', false)
+                if (uuid !== '' && uuid.match(v4)){
+                    addItem(uuid, 'snack', false)
                 }
                 break;
             case 'drink':
-                if (urlParams.get(`${slot}`) !== ''){
-                    addItem(urlParams.get(`${slot}`), 'drink', false)
-                }                break;
+                if (uuid !== '' && uuid.match(v4)){
+                    addItem(uuid, 'drink', false)
+                }
+                break;
             default:
                 break;
         }

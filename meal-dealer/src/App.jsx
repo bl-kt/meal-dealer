@@ -5,8 +5,19 @@ import MealDealItem from "./components/SelectedDealItem/index.jsx";
 import DealOption from "./components/DealOption/index.jsx";
 
 function App() {
+
     // Scroll event listener
     useEffect(() => {
+        document.addEventListener("DOMContentLoaded", function(event) {
+            console.log('domload')
+            const scrollpos = localStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
+
+        window.onbeforeunload = function(e) {
+            localStorage.setItem('scrollpos', window.scrollY);
+        };
+
         document.addEventListener("scroll", (event) => {
             if (window.scrollY > window.innerHeight) {
                 setShowScrollToTop(true)
@@ -26,33 +37,33 @@ function App() {
 
     const urlParams = new URLSearchParams(window.location.search);
 
+    // Update items from query parame
     const getItemFromQueryParam = (slot) => {
         const v4 = new RegExp(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
-
         const uuid = urlParams.get(`${slot}`)
-        console.log(uuid)
-        console.log(uuid.match(v4))
 
-        switch (slot) {
-            case 'main':
-                if (uuid !== '' && uuid.match(v4)){
-                    addItem(uuid, 'main', false)
-                } else {
-                    return
-                }
-                break;
-            case 'snack':
-                if (uuid !== '' && uuid.match(v4)){
-                    addItem(uuid, 'snack', false)
-                }
-                break;
-            case 'drink':
-                if (uuid !== '' && uuid.match(v4)){
-                    addItem(uuid, 'drink', false)
-                }
-                break;
-            default:
-                break;
+        if (uuid) {
+            switch (slot) {
+                case 'main':
+                    if (uuid !== '' && uuid.match(v4)){
+                        addItem(uuid, 'main', false)
+                    } else {
+                        return
+                    }
+                    break;
+                case 'snack':
+                    if (uuid !== '' && uuid.match(v4)){
+                        addItem(uuid, 'snack', false)
+                    }
+                    break;
+                case 'drink':
+                    if (uuid !== '' && uuid.match(v4)){
+                        addItem(uuid, 'drink', false)
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -64,6 +75,8 @@ function App() {
     }, []);
 
 
+    // Determine next slot to add item to
+    // Will become unused when category is implemented
     const determineSlot = (isRandom = false) => {
         // This could probably be done better, come back to this
         if (main.item !== null || main.isLocked){
@@ -240,6 +253,7 @@ function App() {
         }
     }
 
+    // Scrolls to top of page
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }

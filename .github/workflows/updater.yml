@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: "18"
       - run: npm install
-      - run: node src/updater.js
+      - run: pnpm update-deals
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update meal-deals.json

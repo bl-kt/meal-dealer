@@ -79,7 +79,7 @@ const fetchMealDeals = async () => {
             const results = json.productsByCategory.data.results.productItems.map((p) => p.product);
 
             const mappedResults = results.map((product) => ({
-                name: trimName(product.title),
+                name: trimName(product.title).trim(),
                 image: product.defaultImageUrl.split('?')[0],
                 link: `https://www.tesco.com/groceries/en-GB/products/${product.id}`,
                 id: product.id,
